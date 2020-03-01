@@ -3,8 +3,8 @@ namespace Com.YouMusic.Core.Dtos
 {
     public class MusicSaveDto
     {
-        public MusicSaveDto()
-        {
-        }
+        public string Name { get; set; }
+
+        public int ArtistId { get; set; }
     }
 }
