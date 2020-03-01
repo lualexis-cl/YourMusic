@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Com.YouMusic.Core\Com.YouMusic.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BusinessLogic\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+  </ItemGroup>
+</Project>
