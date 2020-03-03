@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Com.YouMusic.Core.Dtos;
 using Com.YouMusic.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,20 +40,29 @@ namespace Com.YouMusic.Api.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<IActionResult> CreateMusic([FromBody]MusicSaveDto musicDto)
         {
+            var newMusic = await _musicService.CreateMusic(musicDto);
+
+            return Ok(newMusic);
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public async Task<IActionResult> UpdateMusic([FromBody]MusicSaveDto musicDto)
         {
+            await _musicService.UpdateMusic(musicDto);
+
+            return Ok();
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            await _musicService.DeleteMusic(id);
+
+            return Ok();
         }
     }
 }

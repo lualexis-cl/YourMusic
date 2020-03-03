@@ -19,6 +19,9 @@ namespace Com.YouMusic.Services.Helpers
                         option.MapFrom(src => src.Artist));
 
                 config.CreateMap<MusicDto, Music>();
+
+                config.CreateMap<MusicSaveDto, Music>();
+                config.CreateMap<Music, MusicSaveDto>();
             });
         }
     }

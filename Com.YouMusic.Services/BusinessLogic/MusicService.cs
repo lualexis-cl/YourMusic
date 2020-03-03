@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Com.YouMusic.Core;
@@ -23,13 +22,15 @@ namespace Com.YouMusic.Services.BusinessLogic
             _mapper = mapperConfiguration.CreateMapper();
         }
 
-        public async Task<MusicDto> CreateMusic(MusicDto dto)
+        public async Task<MusicDto> CreateMusic(MusicSaveDto dto)
         {
-            var entity = _mapper.Map<MusicDto, Music>(dto);
+            var entity = _mapper.Map<MusicSaveDto, Music>(dto);
             await _unitOfWork.Musics.AddAsync(entity);
             await _unitOfWork.CommitAsync();
 
-            return dto;
+            var infoDto = _mapper.Map<MusicDto>(entity);
+
+            return infoDto;
         }
 
         public async Task DeleteMusic(int id)
@@ -63,13 +64,12 @@ namespace Com.YouMusic.Services.BusinessLogic
             return dtos;
         }
 
-        public async Task UpdateMusic(MusicDto dto)
+        public async Task UpdateMusic(MusicSaveDto dto)
         {
             var entity = _mapper.Map<Music>(dto);
             _unitOfWork.Musics.Edit(entity);
 
             await _unitOfWork.CommitAsync();
-
         }
     }
 }
